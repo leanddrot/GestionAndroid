@@ -55,10 +55,14 @@ public class Service implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Service(String id, String rel, String href, String method,
+
+    //public Service(String id, String rel, String href, String method,
+    //               String type, String title,String uname,String pass) {
+
+    public Service(String rel, String href, String method,
 			String type, String title,String uname,String pass) {
 		super();
-		this.id = id;
+	//	this.id = id;
 		this.rel = rel;
 		this.href = href;
 		this.method = method;

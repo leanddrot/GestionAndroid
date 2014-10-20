@@ -34,11 +34,14 @@ public class ServiceViewActivity extends ListActivity{
 		final String pass = intent.getExtras().getString("pass");
 		
 		final Service services[]= new Service[dene.length];
+
+        Log.v("ArrayServicios: ", dene.length + "");
+
 		String titles[] = new String[dene.length];
 		for(int i=0;i<dene.length;i++){
 			services[i]= (Service)dene[i];
 			titles[i]= services[i].getTitle();
-			Log.v("id ",services[i].getId());
+			Log.v("titulo: ",services[i].getTitle());
 		}
 		 
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.slingle_list_item,titles)); 

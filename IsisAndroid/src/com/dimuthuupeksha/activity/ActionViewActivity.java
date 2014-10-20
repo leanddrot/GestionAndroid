@@ -17,6 +17,9 @@ public class ActionViewActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+
+
+
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 		Service service = (Service)intent.getSerializableExtra("SERVICE");

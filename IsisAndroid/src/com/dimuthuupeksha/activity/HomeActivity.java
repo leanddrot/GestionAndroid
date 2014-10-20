@@ -37,8 +37,9 @@ public class HomeActivity extends Activity{
 			JSONArray linkarray = obj.getJSONArray("links");
 			 Log.v("out","got links: " + linkarray.length());
 			for(int i=0;i<linkarray.length();i++){
-				if(linkarray.getJSONObject(i).getString("rel").equals("services")){
-					jp = new JSONParser();
+				if(linkarray.getJSONObject(i).getString("rel").equals("urn:org.restfulobjects:rels/services")){
+                    Log.v("out","encontre los servicios");
+                    jp = new JSONParser();
 					String serviceurl = linkarray.getJSONObject(i).getString("href");
 					
 					Log.v("service url",serviceurl);
@@ -49,14 +50,15 @@ public class HomeActivity extends Activity{
 					if(serviJsonArray.length()>0){
 						Service[] services = new Service[serviJsonArray.length()];
 						for(int j=0;j<serviJsonArray.length();j++){
-							String id = serviJsonArray.getJSONObject(j).getString("id");
+							//String id = serviJsonArray.getJSONObject(j).getString("id");
 							String rel = serviJsonArray.getJSONObject(j).getString("rel");
 							String href = serviJsonArray.getJSONObject(j).getString("href");
 							String method = serviJsonArray.getJSONObject(j).getString("method");
 							String type = serviJsonArray.getJSONObject(j).getString("type");
 							String title = serviJsonArray.getJSONObject(j).getString("title");
 							
-							services[j]= new Service(id, rel, href, method, type, title,uname,pass);
+							//services[j]= new Service(id, rel, href, method, type, title,uname,pass);
+                            services[j]= new Service(rel, href, method, type, title,uname,pass);
 						}
 
                         Log.v("services", String.valueOf(services.length));
@@ -65,8 +67,7 @@ public class HomeActivity extends Activity{
 						intent.putExtra("uname", uname);
 						intent.putExtra("pass", pass);
 						intent.putExtra("url", url);
-                        intent.putExtra("puerto", puerto);
-						
+
 						startActivity(intent);
 						
 					}
