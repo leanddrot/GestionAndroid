@@ -7,6 +7,7 @@ import com.example.isisandroid.R;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,14 +19,19 @@ public class ActionViewActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 
-
+        Log.v("ActionViewActivity: ", "iniciando");
 
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 		Service service = (Service)intent.getSerializableExtra("SERVICE");
-		
+
+        Log.v("(ActionViewActivity) Service Elegido: ", service.getTitle());
+
 		final Action []actions = service.getAllActions();
-		if(actions!=null){
+
+        //Log.v("(Actions del Service " +service.getTitle(),actions.length + "");
+
+        if(actions!=null){
 			String titles[] = new String[actions.length];
 			for(int i=0;i<actions.length;i++){
 				titles[i] = actions[i].getFriendlyName();
