@@ -21,8 +21,12 @@ public class ServiceViewActivity extends ListActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		Intent intent = getIntent();
+
+        Log.v("iniciando ", "LISTVIEW");
+
+        Intent intent = getIntent();
 		Object[] dene = (Object[])intent.getSerializableExtra("SERVICE_LIST");
+
 
 
 		final String url = intent.getExtras().getString("url");

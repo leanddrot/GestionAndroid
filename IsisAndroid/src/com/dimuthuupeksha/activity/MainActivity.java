@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+        if (android.os.Build.VERSION.SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
     	final EditText uname = (EditText)findViewById(R.id.uname);
 	    final EditText pass = (EditText)findViewById(R.id.pass);
 	    final EditText url = (EditText)findViewById(R.id.url);
+        final EditText puerto = (EditText)findViewById(R.id.puerto);
         submit.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -35,7 +36,8 @@ public class MainActivity extends Activity {
 				intent.putExtra("uname", uname.getText().toString());
 				intent.putExtra("pass", pass.getText().toString());
 				intent.putExtra("url", url.getText().toString());
-				
+                intent.putExtra("puerto", puerto.getText().toString());
+
 				startActivity(intent);
 			}
 		});

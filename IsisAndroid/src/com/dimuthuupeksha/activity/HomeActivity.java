@@ -22,17 +22,20 @@ public class HomeActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
 		Bundle extras = getIntent().getExtras();
-		String url = extras.getString("url");
+		String url = "http://"+extras.getString("url")+":"+extras.getString("puerto") + "/restful/";
 		String uname = extras.getString("uname");
 		String pass = extras.getString("pass");
+        String puerto = extras.getString("puerto");
 		TextView test = (TextView)findViewById(R.id.test);
 		test.setText(url);
-		
+
+        Log.v("iniciando ", url);
+
 		JSONParser jp = new JSONParser();
 		JSONObject obj=  jp.getJSONFromUrl(url,uname,pass);
 		try {
 			JSONArray linkarray = obj.getJSONArray("links");
-			 Log.v("out","got links");
+			 Log.v("out","got links: " + linkarray.length());
 			for(int i=0;i<linkarray.length();i++){
 				if(linkarray.getJSONObject(i).getString("rel").equals("services")){
 					jp = new JSONParser();
@@ -55,11 +58,14 @@ public class HomeActivity extends Activity{
 							
 							services[j]= new Service(id, rel, href, method, type, title,uname,pass);
 						}
+
+                        Log.v("services", String.valueOf(services.length));
 						Intent intent = new Intent("android.intent.action.LISTVIEW");
 						intent.putExtra("SERVICE_LIST", services);
 						intent.putExtra("uname", uname);
 						intent.putExtra("pass", pass);
 						intent.putExtra("url", url);
+                        intent.putExtra("puerto", puerto);
 						
 						startActivity(intent);
 						
@@ -71,8 +77,9 @@ public class HomeActivity extends Activity{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Log.v("ddddd", "sdasf");
-	    
+		Log.v("ddddd", "asdfafa");
+
+
 	}
 	
 
